@@ -4,7 +4,7 @@
 ##' 
 ##' This `<-` command basically takes anything on the right hand side
 ##' and puts it into the left hand side.  Like an equation.  This is
-##' called variable assignment (?).
+##' called variable assignment.
 ##' 
 df <- read.csv('train.csv')
 
@@ -90,8 +90,11 @@ summary(select(tbl_df(filter(df, Sex == 'male', Age < 40)), Sex, Age, Pclass, Pa
 
 ##' The pipe does this by basically making the output be named `.`, so
 ##' really, the pipe is doing this:
-df %>% select(., Fare, Sex) %>% filter(., Sex == 'male') %>%
-  select(., Fare) %>% round(., 3)
+df %>% select(., Fare, Sex) %>%
+  filter(., Sex == 'male') %>%
+  select(., Fare) %>%
+  round(., 3) %>%
+  head(.)
 
 ##' `tbl_df` makes the dataframe also a tbl object, so that the outout
 ##' can be printed easily.  The verbs for dplyr are:
@@ -106,7 +109,8 @@ df %>% select(., Fare, Sex) %>% filter(., Sex == 'male') %>%
 ##' For more explanation of dplyr, check the documentation:
 ##' https://github.com/hadley/dplyr or run this command
 ##' `vignette('introduction', package = 'dplyr')`
-##' 
+##'
+##' The `tbl_df()` function makes the printing prettier.
 df <- tbl_df(df)
 df %>% summary
 
@@ -155,6 +159,8 @@ prep.table <- df %>%
   summarise(mean = mean(Value) %>% round(2)) %>%
   spread(Survived, mean)
 
+prep.table
+
 ##' This can be created into a markdown table, so that it can be
 ##' easily put into a manuscript or report.  A very useful package is
 ##' called `pander` which allows you to create markdown tables.
@@ -162,7 +168,7 @@ prep.table <- df %>%
 install.packages('pander')
 ##+ table, results = 'asis'
 library(pander)
-prep.table %>% pander()
+prep.table %>% pander(style = 'rmarkdown')
 
 ##' There is also join commands from dplyr:
 ##'
@@ -175,6 +181,7 @@ prep.table %>% pander()
 ##' =====================
 ##' 
 ##' Exact code used in the workshop
+ds <- df
 ds %>% select(., Sex, Cabin, Fare) %>%
     filter(., Sex == 'female', Fare > 10)
 
@@ -208,9 +215,12 @@ prep.table2 <- ds %>%
                              ')')) %>%
     spread(Sex, meanSD)
 
+prep.table2
+
 ##' Create a table, with a caption!
 ##+ tableTesting, results = 'asis'
-pander(prep.table2, style = 'rmarkdown', caption = 'Testing')
+pander(prep.table2, style = 'rmarkdown',
+       caption = 'Testing caption for this table!')
 
 ##' To use the `grid.table` function instead of `pander`, load the
 ##' `gridExtra` package.  You may need to install first
@@ -220,8 +230,8 @@ grid.table(prep.table2, rows = NULL)
 
 ##' A package that does a tutorial *within* R!  I've heard good things
 ##' from it.
+##+ swirlInstall, eval = FALSE
 install.packages('swirl')
-
 
 ##' To see help files, you can run the `vignette` command.
 ##+ vignHelp, eval = FALSE
@@ -229,4 +239,4 @@ vignette('introduction', package = 'dplyr')
 
 ##+ knit, eval = FALSE, echo = FALSE
 library(knitr)
-spin('practice.R')
+spin('practiceCode.R')
