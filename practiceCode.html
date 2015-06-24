@@ -1,0 +1,952 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Outline and concepts for workshop</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Outline and concepts for workshop</h1>
+
+<p>This <code>&lt;-</code> command basically takes anything on the right hand side
+and puts it into the left hand side.  Like an equation.  This is
+called variable assignment.</p>
+
+<pre><code class="r">df &lt;- read.csv(&#39;train.csv&#39;)
+</code></pre>
+
+<p><code>head</code> checks only the first few rows of the dataset.</p>
+
+<pre><code class="r">head(df)
+</code></pre>
+
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+## 3           3        1      3
+## 4           4        1      1
+## 5           5        0      3
+## 6           6        0      3
+##                                                  Name    Sex Age SibSp
+## 1                             Braund, Mr. Owen Harris   male  22     1
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+## 3                              Heikkinen, Miss. Laina female  26     0
+## 4        Futrelle, Mrs. Jacques Heath (Lily May Peel) female  35     1
+## 5                            Allen, Mr. William Henry   male  35     0
+## 6                                    Moran, Mr. James   male  NA     0
+##   Parch           Ticket    Fare Cabin Embarked
+## 1     0        A/5 21171  7.2500              S
+## 2     0         PC 17599 71.2833   C85        C
+## 3     0 STON/O2. 3101282  7.9250              S
+## 4     0           113803 53.1000  C123        S
+## 5     0           373450  8.0500              S
+## 6     0           330877  8.4583              Q
+</code></pre>
+
+<p><code>dim</code> checks the dimensions of the dataset (number of rows and
+number of columns, in that order).</p>
+
+<pre><code class="r">dim(df)
+</code></pre>
+
+<pre><code>## [1] 891  12
+</code></pre>
+
+<p><code>str</code> checks the structure of the dataset, showing what the <code>df</code>
+object is, what each item (or column) in the dataset is, such as
+numeric, factor, etc.  This is pretty useful as it can give you a
+quick overview of what the variables have been classified as and
+if there are any problems.</p>
+
+<pre><code class="r">str(df)
+</code></pre>
+
+<pre><code>## &#39;data.frame&#39;:    891 obs. of  12 variables:
+##  $ PassengerId: int  1 2 3 4 5 6 7 8 9 10 ...
+##  $ Survived   : int  0 1 1 1 0 0 0 0 1 1 ...
+##  $ Pclass     : int  3 1 3 1 3 3 1 3 3 2 ...
+##  $ Name       : Factor w/ 891 levels &quot;Abbing, Mr. Anthony&quot;,..: 109 191 358 277 16 559 520 629 416 581 ...
+##  $ Sex        : Factor w/ 2 levels &quot;female&quot;,&quot;male&quot;: 2 1 1 1 2 2 2 2 1 1 ...
+##  $ Age        : num  22 38 26 35 35 NA 54 2 27 14 ...
+##  $ SibSp      : int  1 1 0 1 0 0 0 3 0 1 ...
+##  $ Parch      : int  0 0 0 0 0 0 0 1 2 0 ...
+##  $ Ticket     : Factor w/ 681 levels &quot;110152&quot;,&quot;110413&quot;,..: 525 596 662 50 473 276 86 396 345 133 ...
+##  $ Fare       : num  7.25 71.28 7.92 53.1 8.05 ...
+##  $ Cabin      : Factor w/ 148 levels &quot;&quot;,&quot;A10&quot;,&quot;A14&quot;,..: 1 83 1 57 1 1 131 1 1 1 ...
+##  $ Embarked   : Factor w/ 4 levels &quot;&quot;,&quot;C&quot;,&quot;Q&quot;,&quot;S&quot;: 4 2 4 4 4 3 4 4 4 2 ...
+</code></pre>
+
+<p><code>class</code> checks only the type of object you are asking, not the
+contents (unlike <code>str</code>).</p>
+
+<pre><code class="r">class(df)
+</code></pre>
+
+<pre><code>## [1] &quot;data.frame&quot;
+</code></pre>
+
+<p><code>summary</code> is an extremely useful command to check the basic
+descriptive statistics (mean, median, range, count for factors).
+I usually use this anytime I want to quickly look at my dataset,
+to get a sense of it.</p>
+
+<pre><code class="r">summary(df)
+</code></pre>
+
+<pre><code>##   PassengerId       Survived          Pclass     
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000  
+##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000  
+##  Median :446.0   Median :0.0000   Median :3.000  
+##  Mean   :446.0   Mean   :0.3838   Mean   :2.309  
+##  3rd Qu.:668.5   3rd Qu.:1.0000   3rd Qu.:3.000  
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000  
+##                                                  
+##                                     Name         Sex           Age       
+##  Abbing, Mr. Anthony                  :  1   female:314   Min.   : 0.42  
+##  Abbott, Mr. Rossmore Edward          :  1   male  :577   1st Qu.:20.12  
+##  Abbott, Mrs. Stanton (Rosa Hunt)     :  1                Median :28.00  
+##  Abelson, Mr. Samuel                  :  1                Mean   :29.70  
+##  Abelson, Mrs. Samuel (Hannah Wizosky):  1                3rd Qu.:38.00  
+##  Adahl, Mr. Mauritz Nils Martin       :  1                Max.   :80.00  
+##  (Other)                              :885                NA&#39;s   :177    
+##      SibSp           Parch             Ticket         Fare       
+##  Min.   :0.000   Min.   :0.0000   1601    :  7   Min.   :  0.00  
+##  1st Qu.:0.000   1st Qu.:0.0000   347082  :  7   1st Qu.:  7.91  
+##  Median :0.000   Median :0.0000   CA. 2343:  7   Median : 14.45  
+##  Mean   :0.523   Mean   :0.3816   3101295 :  6   Mean   : 32.20  
+##  3rd Qu.:1.000   3rd Qu.:0.0000   347088  :  6   3rd Qu.: 31.00  
+##  Max.   :8.000   Max.   :6.0000   CA 2144 :  6   Max.   :512.33  
+##                                   (Other) :852                   
+##          Cabin     Embarked
+##             :687    :  2   
+##  B96 B98    :  4   C:168   
+##  C23 C25 C27:  4   Q: 77   
+##  G6         :  4   S:644   
+##  C22 C26    :  3           
+##  D          :  3           
+##  (Other)    :186
+</code></pre>
+
+<p>If you want to see specific columns or rows, you can use the <code>[</code>
+command.  The first number is the row <code>[row, ]</code>, and the second
+number is the column <code>[, column]</code>.  So together: <code>[row, column]</code>.</p>
+
+<pre><code class="r">df[1:2, 1:5]
+</code></pre>
+
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+##                                                  Name    Sex
+## 1                             Braund, Mr. Owen Harris   male
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female
+</code></pre>
+
+<p>Also, numbers can be put together like so:</p>
+
+<pre><code class="r">1:10
+</code></pre>
+
+<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
+<pre><code class="r">-1:10
+</code></pre>
+
+<pre><code>##  [1] -1  0  1  2  3  4  5  6  7  8  9 10
+</code></pre>
+
+<pre><code class="r">1:-10
+</code></pre>
+
+<pre><code>##  [1]   1   0  -1  -2  -3  -4  -5  -6  -7  -8  -9 -10
+</code></pre>
+
+<pre><code class="r">-10:1
+</code></pre>
+
+<pre><code>##  [1] -10  -9  -8  -7  -6  -5  -4  -3  -2  -1   0   1
+</code></pre>
+
+<p>In dataframes, a negative number means remove:</p>
+
+<pre><code class="r">df[1:2, ]
+</code></pre>
+
+<pre><code>##   PassengerId Survived Pclass
+## 1           1        0      3
+## 2           2        1      1
+##                                                  Name    Sex Age SibSp
+## 1                             Braund, Mr. Owen Harris   male  22     1
+## 2 Cumings, Mrs. John Bradley (Florence Briggs Thayer) female  38     1
+##   Parch    Ticket    Fare Cabin Embarked
+## 1     0 A/5 21171  7.2500              S
+## 2     0  PC 17599 71.2833   C85        C
+</code></pre>
+
+<pre><code class="r">df[1:2, -2:-4]
+</code></pre>
+
+<pre><code>##   PassengerId    Sex Age SibSp Parch    Ticket    Fare Cabin Embarked
+## 1           1   male  22     1     0 A/5 21171  7.2500              S
+## 2           2 female  38     1     0  PC 17599 71.2833   C85        C
+</code></pre>
+
+<p>You can use strings (real words) to select a specific column.</p>
+
+<pre><code class="r">df[1:2, &#39;Age&#39;]
+</code></pre>
+
+<pre><code>## [1] 22 38
+</code></pre>
+
+<p>You can use the combine command <code>c()</code> to put two strings or
+numbers together.</p>
+
+<pre><code class="r">df[c(1, 4), c(&#39;Age&#39;, &#39;Sex&#39;)]
+</code></pre>
+
+<pre><code>##   Age    Sex
+## 1  22   male
+## 4  35 female
+</code></pre>
+
+<p>You can also subset the data using these commands:</p>
+
+<pre><code class="r">head(df[df$Sex == &#39;male&#39;, ])
+</code></pre>
+
+<pre><code>##    PassengerId Survived Pclass                           Name  Sex Age
+## 1            1        0      3        Braund, Mr. Owen Harris male  22
+## 5            5        0      3       Allen, Mr. William Henry male  35
+## 6            6        0      3               Moran, Mr. James male  NA
+## 7            7        0      1        McCarthy, Mr. Timothy J male  54
+## 8            8        0      3 Palsson, Master. Gosta Leonard male   2
+## 13          13        0      3 Saundercock, Mr. William Henry male  20
+##    SibSp Parch    Ticket    Fare Cabin Embarked
+## 1      1     0 A/5 21171  7.2500              S
+## 5      0     0    373450  8.0500              S
+## 6      0     0    330877  8.4583              Q
+## 7      0     0     17463 51.8625   E46        S
+## 8      3     1    349909 21.0750              S
+## 13     0     0 A/5. 2151  8.0500              S
+</code></pre>
+
+<pre><code class="r">head(df[c(df$Sex == &#39;male&#39;, df$Age &lt; 40), ])
+</code></pre>
+
+<pre><code>##    PassengerId Survived Pclass                           Name  Sex Age
+## 1            1        0      3        Braund, Mr. Owen Harris male  22
+## 5            5        0      3       Allen, Mr. William Henry male  35
+## 6            6        0      3               Moran, Mr. James male  NA
+## 7            7        0      1        McCarthy, Mr. Timothy J male  54
+## 8            8        0      3 Palsson, Master. Gosta Leonard male   2
+## 13          13        0      3 Saundercock, Mr. William Henry male  20
+##    SibSp Parch    Ticket    Fare Cabin Embarked
+## 1      1     0 A/5 21171  7.2500              S
+## 5      0     0    373450  8.0500              S
+## 6      0     0    330877  8.4583              Q
+## 7      0     0     17463 51.8625   E46        S
+## 8      3     1    349909 21.0750              S
+## 13     0     0 A/5. 2151  8.0500              S
+</code></pre>
+
+<h2><code>dplyr</code> and <code>tidyr</code> approach</h2>
+
+<p>However, these are a bit complicated, and hard to read!  There is
+a better way.  Install and/or load these packages:</p>
+
+<pre><code class="r">install.packages(&#39;dplyr&#39;)
+install.packages(&#39;tidyr&#39;)
+</code></pre>
+
+<pre><code class="r">library(dplyr)
+library(tidyr)
+</code></pre>
+
+<p>To do the same as the above, use:</p>
+
+<pre><code class="r">df %&gt;%
+  filter(Sex == &#39;male&#39;, Age &lt; 40) %&gt;%
+  ## You can keep chaining
+  tbl_df() %&gt;%
+  ## ... and chaining
+  select(Sex, Age, Pclass, Parch) %&gt;%
+  ## ... and chaining
+  summary()
+</code></pre>
+
+<pre><code>##      Sex           Age            Pclass          Parch       
+##  female:  0   Min.   : 0.42   Min.   :1.000   Min.   :0.0000  
+##  male  :344   1st Qu.:19.00   1st Qu.:2.000   1st Qu.:0.0000  
+##               Median :25.00   Median :3.000   Median :0.0000  
+##               Mean   :24.28   Mean   :2.494   Mean   :0.2878  
+##               3rd Qu.:31.00   3rd Qu.:3.000   3rd Qu.:0.0000  
+##               Max.   :39.00   Max.   :3.000   Max.   :5.0000
+</code></pre>
+
+<p>The extremely useful <code>%&gt;%</code> chain, or pipe command, is just like in
+the shell/terminal. It takes the output of the previous command
+and inputs it into the next command.  Otherwise, without the <code>%&gt;%</code>
+pipe, it looks like:</p>
+
+<pre><code class="r">summary(select(tbl_df(filter(df, Sex == &#39;male&#39;, Age &lt; 40)), Sex, Age, Pclass, Parch))
+</code></pre>
+
+<pre><code>##      Sex           Age            Pclass          Parch       
+##  female:  0   Min.   : 0.42   Min.   :1.000   Min.   :0.0000  
+##  male  :344   1st Qu.:19.00   1st Qu.:2.000   1st Qu.:0.0000  
+##               Median :25.00   Median :3.000   Median :0.0000  
+##               Mean   :24.28   Mean   :2.494   Mean   :0.2878  
+##               3rd Qu.:31.00   3rd Qu.:3.000   3rd Qu.:0.0000  
+##               Max.   :39.00   Max.   :3.000   Max.   :5.0000
+</code></pre>
+
+<p>The pipe does this by basically making the output be named <code>.</code>, so
+really, the pipe is doing this:</p>
+
+<pre><code class="r">df %&gt;% select(., Fare, Sex) %&gt;%
+  filter(., Sex == &#39;male&#39;) %&gt;%
+  select(., Fare) %&gt;%
+  round(., 3) %&gt;%
+  head(.)
+</code></pre>
+
+<pre><code>##     Fare
+## 1  7.250
+## 2  8.050
+## 3  8.458
+## 4 51.862
+## 5 21.075
+## 6  8.050
+</code></pre>
+
+<p><code>tbl_df</code> makes the dataframe also a tbl object, so that the outout
+can be printed easily.  The verbs for dplyr are:</p>
+
+<ul>
+<li>select</li>
+<li>filter</li>
+<li>mutate</li>
+<li>summarise</li>
+<li>arrange</li>
+<li>group_by</li>
+</ul>
+
+<p>For more explanation of dplyr, check the documentation:
+<a href="https://github.com/hadley/dplyr">https://github.com/hadley/dplyr</a> or run this command
+<code>vignette(&#39;introduction&#39;, package = &#39;dplyr&#39;)</code></p>
+
+<p>The <code>tbl_df()</code> function makes the printing prettier.</p>
+
+<pre><code class="r">df &lt;- tbl_df(df)
+df %&gt;% summary
+</code></pre>
+
+<pre><code>##   PassengerId       Survived          Pclass     
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000  
+##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000  
+##  Median :446.0   Median :0.0000   Median :3.000  
+##  Mean   :446.0   Mean   :0.3838   Mean   :2.309  
+##  3rd Qu.:668.5   3rd Qu.:1.0000   3rd Qu.:3.000  
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000  
+##                                                  
+##                                     Name         Sex           Age       
+##  Abbing, Mr. Anthony                  :  1   female:314   Min.   : 0.42  
+##  Abbott, Mr. Rossmore Edward          :  1   male  :577   1st Qu.:20.12  
+##  Abbott, Mrs. Stanton (Rosa Hunt)     :  1                Median :28.00  
+##  Abelson, Mr. Samuel                  :  1                Mean   :29.70  
+##  Abelson, Mrs. Samuel (Hannah Wizosky):  1                3rd Qu.:38.00  
+##  Adahl, Mr. Mauritz Nils Martin       :  1                Max.   :80.00  
+##  (Other)                              :885                NA&#39;s   :177    
+##      SibSp           Parch             Ticket         Fare       
+##  Min.   :0.000   Min.   :0.0000   1601    :  7   Min.   :  0.00  
+##  1st Qu.:0.000   1st Qu.:0.0000   347082  :  7   1st Qu.:  7.91  
+##  Median :0.000   Median :0.0000   CA. 2343:  7   Median : 14.45  
+##  Mean   :0.523   Mean   :0.3816   3101295 :  6   Mean   : 32.20  
+##  3rd Qu.:1.000   3rd Qu.:0.0000   347088  :  6   3rd Qu.: 31.00  
+##  Max.   :8.000   Max.   :6.0000   CA 2144 :  6   Max.   :512.33  
+##                                   (Other) :852                   
+##          Cabin     Embarked
+##             :687    :  2   
+##  B96 B98    :  4   C:168   
+##  C23 C25 C27:  4   Q: 77   
+##  G6         :  4   S:644   
+##  C22 C26    :  3           
+##  D          :  3           
+##  (Other)    :186
+</code></pre>
+
+<pre><code class="r">df %&gt;%
+  ## subset the data by SibSp
+  filter(SibSp &gt;= 2) %&gt;%
+  ## select only the relevant columns
+  select(Age, Sex, Survived, Cabin, Fare) %&gt;%
+  ## order the data (in descending) by Age
+  arrange(Age) %&gt;%
+  ## create a new column
+  mutate(d.Fare = cut(Fare, 3, labels = c(&#39;Low&#39;, &#39;Middle&#39;, &#39;High&#39;)))
+</code></pre>
+
+<pre><code>## Source: local data frame [74 x 6]
+## 
+##     Age    Sex Survived Cabin    Fare d.Fare
+## 1  0.75 female        1       19.2583    Low
+## 2  0.75 female        1       19.2583    Low
+## 3  1.00   male        0       39.6875    Low
+## 4  1.00   male        1    F4 39.0000    Low
+## 5  1.00   male        0       46.9000    Low
+## 6  2.00   male        0       21.0750    Low
+## 7  2.00   male        0       29.1250    Low
+## 8  2.00 female        0       31.2750    Low
+## 9  2.00 female        0       27.9000    Low
+## 10 2.00   male        0       39.6875    Low
+## ..  ...    ...      ...   ...     ...    ...
+</code></pre>
+
+<p>To do even more interesting things, we can combine the dplyr
+package with the tidyr package.  The tidyr has basically two main
+verbs:</p>
+
+<ul>
+<li>gather</li>
+<li>spread</li>
+</ul>
+
+<pre><code class="r">df %&gt;%
+  filter(SibSp &gt;= 2) %&gt;%
+  select(Age, Sex, Survived, Cabin, Fare) %&gt;%
+  ## convert the data into a very long format
+  gather(Measure, Value, -Sex) %&gt;%
+  ## make each summarise command run on the groups Sex and Measure
+  group_by(Sex, Measure) %&gt;%
+  ## create summary statistics, in this cause the sample in each group
+  ## (Sex and Measure)
+  summarise(n = n()) %&gt;%
+  ## convert the data into a wide format
+  spread(Sex, n)
+</code></pre>
+
+<pre><code>## Warning: attributes are not identical across measure variables; they will
+## be dropped
+</code></pre>
+
+<pre><code>## Source: local data frame [4 x 3]
+## 
+##    Measure female male
+## 1      Age     34   40
+## 2 Survived     34   40
+## 3    Cabin     34   40
+## 4     Fare     34   40
+</code></pre>
+
+<p>Check the content again:</p>
+
+<pre><code class="r">df %&gt;% summary
+</code></pre>
+
+<pre><code>##   PassengerId       Survived          Pclass     
+##  Min.   :  1.0   Min.   :0.0000   Min.   :1.000  
+##  1st Qu.:223.5   1st Qu.:0.0000   1st Qu.:2.000  
+##  Median :446.0   Median :0.0000   Median :3.000  
+##  Mean   :446.0   Mean   :0.3838   Mean   :2.309  
+##  3rd Qu.:668.5   3rd Qu.:1.0000   3rd Qu.:3.000  
+##  Max.   :891.0   Max.   :1.0000   Max.   :3.000  
+##                                                  
+##                                     Name         Sex           Age       
+##  Abbing, Mr. Anthony                  :  1   female:314   Min.   : 0.42  
+##  Abbott, Mr. Rossmore Edward          :  1   male  :577   1st Qu.:20.12  
+##  Abbott, Mrs. Stanton (Rosa Hunt)     :  1                Median :28.00  
+##  Abelson, Mr. Samuel                  :  1                Mean   :29.70  
+##  Abelson, Mrs. Samuel (Hannah Wizosky):  1                3rd Qu.:38.00  
+##  Adahl, Mr. Mauritz Nils Martin       :  1                Max.   :80.00  
+##  (Other)                              :885                NA&#39;s   :177    
+##      SibSp           Parch             Ticket         Fare       
+##  Min.   :0.000   Min.   :0.0000   1601    :  7   Min.   :  0.00  
+##  1st Qu.:0.000   1st Qu.:0.0000   347082  :  7   1st Qu.:  7.91  
+##  Median :0.000   Median :0.0000   CA. 2343:  7   Median : 14.45  
+##  Mean   :0.523   Mean   :0.3816   3101295 :  6   Mean   : 32.20  
+##  3rd Qu.:1.000   3rd Qu.:0.0000   347088  :  6   3rd Qu.: 31.00  
+##  Max.   :8.000   Max.   :6.0000   CA 2144 :  6   Max.   :512.33  
+##                                   (Other) :852                   
+##          Cabin     Embarked
+##             :687    :  2   
+##  B96 B98    :  4   C:168   
+##  C23 C25 C27:  4   Q: 77   
+##  G6         :  4   S:644   
+##  C22 C26    :  3           
+##  D          :  3           
+##  (Other)    :186
+</code></pre>
+
+<p>Compare the means of continuous variables of those who survived
+and those who didn&#39;t.</p>
+
+<pre><code class="r">prep.table &lt;- df %&gt;%
+  select(Survived, Age, Pclass, SibSp, Parch, Fare) %&gt;%
+  gather(Measure, Value, -Survived) %&gt;%
+  group_by(Survived, Measure) %&gt;%
+  ## remove missing values
+  na.omit() %&gt;%
+  ## create a summary statistic (means)
+  summarise(mean = mean(Value) %&gt;% round(2)) %&gt;%
+  spread(Survived, mean)
+
+prep.table
+</code></pre>
+
+<pre><code>## Source: local data frame [5 x 3]
+## 
+##   Measure     0     1
+## 1     Age 30.63 28.34
+## 2  Pclass  2.53  1.95
+## 3   SibSp  0.55  0.47
+## 4   Parch  0.33  0.46
+## 5    Fare 22.12 48.40
+</code></pre>
+
+<p>This can be created into a markdown table, so that it can be
+easily put into a manuscript or report.  A very useful package is
+called <code>pander</code> which allows you to create markdown tables.</p>
+
+<pre><code class="r">install.packages(&#39;pander&#39;)
+</code></pre>
+
+<pre><code class="r">library(pander)
+prep.table %&gt;% pander(style = &#39;rmarkdown&#39;)
+</code></pre>
+
+<table><thead>
+<tr>
+<th align="center">Measure</th>
+<th align="center">0</th>
+<th align="center">1</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Age</td>
+<td align="center">30.63</td>
+<td align="center">28.34</td>
+</tr>
+<tr>
+<td align="center">Pclass</td>
+<td align="center">2.53</td>
+<td align="center">1.95</td>
+</tr>
+<tr>
+<td align="center">SibSp</td>
+<td align="center">0.55</td>
+<td align="center">0.47</td>
+</tr>
+<tr>
+<td align="center">Parch</td>
+<td align="center">0.33</td>
+<td align="center">0.46</td>
+</tr>
+<tr>
+<td align="center">Fare</td>
+<td align="center">22.12</td>
+<td align="center">48.4</td>
+</tr>
+</tbody></table>
+
+<p>There is also join commands from dplyr:</p>
+
+<ul>
+<li>left_join</li>
+<li>outer_join</li>
+<li>inner_join</li>
+<li>anti_join</li>
+</ul>
+
+<h1>Code used in workshop</h1>
+
+<p>Exact code used in the workshop</p>
+
+<pre><code class="r">ds &lt;- df
+ds %&gt;% select(., Sex, Cabin, Fare) %&gt;%
+    filter(., Sex == &#39;female&#39;, Fare &gt; 10)
+</code></pre>
+
+<pre><code>## Source: local data frame [250 x 3]
+## 
+##       Sex Cabin    Fare
+## 1  female   C85 71.2833
+## 2  female  C123 53.1000
+## 3  female       11.1333
+## 4  female       30.0708
+## 5  female    G6 16.7000
+## 6  female  C103 26.5500
+## 7  female       16.0000
+## 8  female       18.0000
+## 9  female       21.0750
+## 10 female       31.3875
+## ..    ...   ...     ...
+</code></pre>
+
+<pre><code class="r">filter(select(ds, Sex, Cabin, Fare),
+       Sex == &#39;female&#39;)
+</code></pre>
+
+<pre><code>## Source: local data frame [314 x 3]
+## 
+##       Sex Cabin    Fare
+## 1  female   C85 71.2833
+## 2  female        7.9250
+## 3  female  C123 53.1000
+## 4  female       11.1333
+## 5  female       30.0708
+## 6  female    G6 16.7000
+## 7  female  C103 26.5500
+## 8  female        7.8542
+## 9  female       16.0000
+## 10 female       18.0000
+## ..    ...   ...     ...
+</code></pre>
+
+<pre><code class="r">ds %&gt;%
+    select(Sex, Cabin, Fare) %&gt;%
+    mutate(newcol = 10 * Fare) %&gt;%
+    arrange(Fare)
+</code></pre>
+
+<pre><code>## Source: local data frame [891 x 4]
+## 
+##     Sex Cabin Fare newcol
+## 1  male          0      0
+## 2  male   B94    0      0
+## 3  male          0      0
+## 4  male          0      0
+## 5  male          0      0
+## 6  male          0      0
+## 7  male          0      0
+## 8  male          0      0
+## 9  male          0      0
+## 10 male          0      0
+## ..  ...   ...  ...    ...
+</code></pre>
+
+<pre><code class="r">ds %&gt;%
+    select(Sex, Age, Fare) %&gt;%
+    group_by(Sex) %&gt;%
+    na.omit() %&gt;%
+    summarise(n = n(),
+              mean = mean(Age))
+</code></pre>
+
+<pre><code>## Source: local data frame [2 x 3]
+## 
+##      Sex   n     mean
+## 1 female 261 27.91571
+## 2   male 453 30.72664
+</code></pre>
+
+<p>Remove a column using the <code>-</code> sign.</p>
+
+<pre><code class="r">ds %&gt;% select(-Age)
+</code></pre>
+
+<pre><code>## Source: local data frame [891 x 11]
+## 
+##    PassengerId Survived Pclass
+## 1            1        0      3
+## 2            2        1      1
+## 3            3        1      3
+## 4            4        1      1
+## 5            5        0      3
+## 6            6        0      3
+## 7            7        0      1
+## 8            8        0      3
+## 9            9        1      3
+## 10          10        1      2
+## ..         ...      ...    ...
+## Variables not shown: Name (fctr), Sex (fctr), SibSp (int), Parch (int),
+##   Ticket (fctr), Fare (dbl), Cabin (fctr), Embarked (fctr)
+</code></pre>
+
+<pre><code class="r">prep.table2 &lt;- ds %&gt;%
+    select(Sex, Fare, Age, Pclass, SibSp) %&gt;%
+    mutate(AgeDouble = Age * 2) %&gt;%
+    gather(Measure, Value, -Sex) %&gt;%
+    na.omit() %&gt;%
+    group_by(Sex, Measure) %&gt;%
+    ## create a column with the mean and standard deviation
+    summarise(meanSD = paste0(mean(Value) %&gt;% round(2),
+                             &#39; (&#39;, sd(Value) %&gt;% round(2),
+                             &#39;)&#39;)) %&gt;%
+    spread(Sex, meanSD)
+
+prep.table2
+</code></pre>
+
+<pre><code>## Source: local data frame [5 x 3]
+## 
+##     Measure        female          male
+## 1      Fare    44.48 (58) 25.52 (43.14)
+## 2       Age 27.92 (14.11) 30.73 (14.68)
+## 3    Pclass   2.16 (0.86)   2.39 (0.81)
+## 4     SibSp   0.69 (1.16)   0.43 (1.06)
+## 5 AgeDouble 55.83 (28.22) 61.45 (29.36)
+</code></pre>
+
+<p>Create a table, with a caption!</p>
+
+<pre><code class="r">pander(prep.table2, style = &#39;rmarkdown&#39;,
+       caption = &#39;Testing caption for this table!&#39;)
+</code></pre>
+
+<table><thead>
+<tr>
+<th align="center">Measure</th>
+<th align="center">female</th>
+<th align="center">male</th>
+</tr>
+</thead><tbody>
+<tr>
+<td align="center">Fare</td>
+<td align="center">44.48 (58)</td>
+<td align="center">25.52 (43.14)</td>
+</tr>
+<tr>
+<td align="center">Age</td>
+<td align="center">27.92 (14.11)</td>
+<td align="center">30.73 (14.68)</td>
+</tr>
+<tr>
+<td align="center">Pclass</td>
+<td align="center">2.16 (0.86)</td>
+<td align="center">2.39 (0.81)</td>
+</tr>
+<tr>
+<td align="center">SibSp</td>
+<td align="center">0.69 (1.16)</td>
+<td align="center">0.43 (1.06)</td>
+</tr>
+<tr>
+<td align="center">AgeDouble</td>
+<td align="center">55.83 (28.22)</td>
+<td align="center">61.45 (29.36)</td>
+</tr>
+</tbody></table>
+
+<p>Table: Testing caption for this table!</p>
+
+<p>To use the <code>grid.table</code> function instead of <code>pander</code>, load the
+<code>gridExtra</code> package.  You may need to install first
+(<code>install.packages(&#39;gridExtra&#39;)</code>).</p>
+
+<pre><code class="r">library(gridExtra)
+grid.table(prep.table2, rows = NULL)
+</code></pre>
+
+<p><img src="data:image/png;base64,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" alt="plot of chunk unnamed-chunk-22"/> </p>
+
+<p>A package that does a tutorial <em>within</em> R!  I&#39;ve heard good things
+from it.</p>
+
+<pre><code class="r">install.packages(&#39;swirl&#39;)
+</code></pre>
+
+<p>To see help files, you can run the <code>vignette</code> command.</p>
+
+<pre><code class="r">vignette(&#39;introduction&#39;, package = &#39;dplyr&#39;)
+</code></pre>
+
+</body>
+
+</html>
